@@ -1,0 +1,37 @@
+<%- include('header'); %>
+
+<div class="box" id="heading">
+    <h1>To-Do List</h1>
+   <h1 class="list-title"><%= listTitle %></h1> 
+</div>
+<div class="box">
+  <% newItems.forEach(item => { %>
+    <form action="/delete" method="post">
+        <div class="item">
+            <input type="checkbox" name="checkbox" value="<%=item._id%>" onchange="this.form.submit()" />
+            <p><%= item.name %></p>
+        </div>
+    </form>
+  <% }); %>
+  <form class="item" action="/" method="post">
+    <input
+      type="text"
+      name="newItem"
+      placeholder="New Item"
+      autocomplete="off"
+    />
+    <button type="submit" name="list" value="<%= listTitle%>">+</button>
+  </form>
+</div>
+<script >
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+
+</script>
+<%- include('footer'); %>
